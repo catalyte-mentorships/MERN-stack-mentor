@@ -2,7 +2,12 @@ import React from 'react';
 import _ from 'lodash'
 
 
-
+/**
+ * @author Keith Murphy | nomadmystics@gmail.com
+ * @param legalities
+ * @returns {*}
+ * @constructor
+ */
 const Legalities = (legalities) => {
 	console.log(legalities);
 	return (
