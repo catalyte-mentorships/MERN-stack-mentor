@@ -6,7 +6,7 @@
   &__flex-container {
     display: flex;
     flex-direction: row;
-    justify-content: start;
+    justify-content: flex-start;
   }
 
   &__image-container {
@@ -25,5 +25,15 @@
 
   &__text-container {
     width: 100%;
+  }
+}
+
+.Legalities{
+  h4 {
+    display: inline-block;
+  }
+
+  h5 {
+    display: inline-block;
   }
 }

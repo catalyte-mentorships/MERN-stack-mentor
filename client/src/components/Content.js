@@ -2,12 +2,18 @@ import React, { Component } from 'react';
 
 
 //import Search from './Search';
-import Details from './Details';
+import Details from './Details/Details';
 
 import '../scss/search.scss';
 
 import { getFetch } from "../utils/promises";
 
+/**
+ * @author Keith Murphy | nomadmystics@gmail.com
+ * class Content
+ * @extends React.Component
+ *
+ */
 class Content extends Component {
 
 	constructor() {
@@ -20,6 +26,11 @@ class Content extends Component {
 		this.getCard = this.getCard.bind(this);
 	}
 
+	/**
+	 * @author Keith Murphy | nomadmystics@gmail.com
+	 * @param {Object} event
+	 * @return void
+	 */
 	clickEvents(event) {
 		event.persist();
 
@@ -28,6 +39,11 @@ class Content extends Component {
 		}
 	}
 
+	/**
+	 * @author Keith Murphy | nomadmystics@gmail.com
+	 * @param {string} url
+	 *
+	 */
 	getCard(url) {
 		getFetch(url).then(card => {
 			this.setState({
@@ -36,6 +52,10 @@ class Content extends Component {
 		});
 	}
 
+	/**
+	 * @author Keith Murphy | nomadmystics@gmail.com
+	 * @returns {*}
+	 */
 	render() {
 		return (
 			<div className="app__main-grid">
