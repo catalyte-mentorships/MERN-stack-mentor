@@ -1,0 +1,29 @@
+.Details {
+  h3 {
+    text-align: center;
+  }
+
+  &__flex-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+  }
+
+  &__image-container {
+    margin: 0 2rem 0 0;
+    width: 100%;
+
+    img {
+      border-radius: 1rem;
+      margin: 0 auto;
+      display: block;
+      width: 100%;
+      height: auto;
+      max-width: 100%;
+    }
+  }
+
+  &__text-container {
+    width: 100%;
+  }
+}
