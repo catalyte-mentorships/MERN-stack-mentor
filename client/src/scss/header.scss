@@ -1,0 +1,13 @@
+@import './common';
+
+.Header {
+  background: $common-background;
+  text-align: center;
+  padding: 1rem 0;
+  margin: .5rem auto;
+
+  h1 {
+    font-size: 4rem;
+    color: white;
+  }
+}

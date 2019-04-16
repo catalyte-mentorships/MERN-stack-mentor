@@ -65,7 +65,6 @@ class Content extends Component {
 						Random Card?
 					</div>
 				</div>
-
 				<Details card={this.state.card}/>
 			</div>
 		)

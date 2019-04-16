@@ -8,7 +8,7 @@ class Search extends Component {
 			<div className="Search">
 				<h2>Search</h2>
 				<div className="search__button" id="random">
-					Random Card?
+					<p>Random Card?</p>
 				</div>
 			</div>
 		);

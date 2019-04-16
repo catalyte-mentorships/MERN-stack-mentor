@@ -1,6 +1,7 @@
 .Details {
-  h3 {
+  h2 {
     text-align: center;
+    font-size: 4rem;
   }
 
   &__flex-container {
@@ -10,11 +11,12 @@
   }
 
   &__image-container {
-    margin: 0 2rem 0 0;
+    margin: 0 4rem 0 4rem;
     width: 100%;
+    max-width: 40rem;
 
     img {
-      border-radius: 1rem;
+      border-radius: 1.75rem;
       margin: 0 auto;
       display: block;
       width: 100%;
@@ -25,15 +27,39 @@
 
   &__text-container {
     width: 100%;
+
+    h4 {
+      font-size: 4rem;
+      margin: 0 auto;
+    }
+
+    h5 {
+      font-size: 3rem;
+    }
   }
 }
 
 .Legalities{
+  summary {
+    font-size: 3rem;
+  }
+
   h4 {
     display: inline-block;
+    font-size: 2rem;
   }
 
   h5 {
     display: inline-block;
+     font-size: 2rem;
+  }
+
+  div:not(:first-child) {
+    background: blueviolet;
+    margin: 0 auto;
+    padding: 0;
+    display: flex;
+    justify-content: flex-start;
+    border-radius: 1rem;
   }
 }
