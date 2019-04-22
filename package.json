@@ -4,7 +4,7 @@
   "description": "This is where I will build what is asked of the mentor so I can help with questions.",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha",
     "client": "npm start --prefix client",
     "dev:server": "nodemon ./app.js",
     "dev:app": "concurrently \"npm run dev:server\" \"npm run client\""
@@ -17,7 +17,10 @@
     "mtgsdk": "^0.4.2"
   },
   "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.2.1",
     "concurrently": "^4.1.0",
+    "mocha": "^6.1.4",
     "nodemon": "^1.18.10"
   }
 }
