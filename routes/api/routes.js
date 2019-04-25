@@ -15,11 +15,19 @@ router.get('/get-card/random', (req, res) => {
 		.catch(err => res.send(err.message));
 });
 
-router.get('/get-set', (req, res, next) => {
-	mtg.set.find('AER')
-		.then(result => {
+/**
+ * @author Keith Murphy | nomadmystics@gmail.com
+ * @description This will get all cards from a set ID
+ * @public
+ */
+router.get('/get-set/set/:set', (req, res, next) => {
+
+	console.log(req.params.set);
+
+	mtg.card.where({ set: req.params.set })
+		.then(cards => {
 			res.json({
-				set: result.set.name,
+				cards: cards,
 			});
 		})
 		.catch(err => res.send(err.message));
