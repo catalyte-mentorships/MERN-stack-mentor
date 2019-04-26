@@ -7,7 +7,7 @@ import Details from './Details/Details';
 import '../scss/search.scss';
 
 import { getFetch } from "../utils/promises";
-import setsData from '../data/sets';
+import setsData from '../data/modified/sets.json';
 
 
 /**
@@ -30,6 +30,8 @@ class Content extends Component {
 
 		// local variables
 		this.defaultSelectOption = 'Select Set';
+
+		console.log(setsData)
 	}
 
 	/**
@@ -47,7 +49,7 @@ class Content extends Component {
 			const selectedValue = magicSetsSelectElement.options[magicSetsSelectElement.selectedIndex].value;
 
 			if (selectedValue !== this.defaultSelectOption) {
-				const set = setsData.data.filter((set, index) => {
+				const set = setsData.filter((set, index) => {
 					if (set.name === selectedValue) {
 						console.log(set);
 						console.log(set.code);
@@ -92,7 +94,7 @@ class Content extends Component {
 							<label htmlFor="ice-cream-choice">Choose a flavor:</label>
 							<select id="magic-sets" ref="magic-sets">
 								<option>{this.defaultSelectOption}</option>
-								{ setsData.data.map((set, index) => {
+								{ setsData.map((set, index) => {
 									return <option key={index}>{set.name}</option>
 								})}
 							</select>
