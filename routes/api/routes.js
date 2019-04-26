@@ -21,16 +21,19 @@ router.get('/get-card/random', (req, res) => {
  * @public
  */
 router.get('/get-set/set/:set', (req, res, next) => {
+	const arr = [];
 
-	console.log(req.params.set);
+	mtg.card.all({ set: req.params.set })
+		.on('data', card => {
+			arr.push(card);
+		});
 
-	mtg.card.where({ set: req.params.set })
-		.then(cards => {
+	mtg.card.all({ set: req.params.set })
+		.on('end', () => {
 			res.json({
-				cards: cards,
+				cards: arr,
 			});
-		})
-		.catch(err => res.send(err.message));
+		});
 });
 
 module.exports = router;
