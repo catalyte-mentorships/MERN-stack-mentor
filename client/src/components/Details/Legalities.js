@@ -9,7 +9,6 @@ import _ from 'lodash'
  * @constructor
  */
 const Legalities = (legalities) => {
-	console.log(legalities);
 	return (
 		<div className="Legalities">
 			<details>

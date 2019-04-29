@@ -52,7 +52,6 @@ class Content extends Component {
 				const set = setsData.filter((set, index) => {
 					if (set.name === selectedValue) {
 						console.log(set);
-						console.log(set.code);
 						return set;
 					}
 				});
@@ -69,7 +68,7 @@ class Content extends Component {
 	getCard(url, isSet = false) {
 		getFetch(url).then(results => {
 			const data = !isSet ? results.card : results;
-
+			console.log(results);
 			this.setState({
 				card: data,
 				isSet: isSet,

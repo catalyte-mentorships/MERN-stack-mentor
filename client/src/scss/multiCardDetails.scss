@@ -1,0 +1,17 @@
+@import './common';
+
+.MultiCardDetails {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+
+  .set-image-container {
+    width: 90%;
+    height: auto;
+    margin: 0 auto;
+    padding: 1rem;
+  }
+
+  img {
+    @include responsive-image();
+  }
+}

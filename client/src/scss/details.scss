@@ -1,3 +1,5 @@
+@import './common';
+
 .Details {
   h2 {
     text-align: center;
@@ -16,12 +18,7 @@
     max-width: 40rem;
 
     img {
-      border-radius: 1.75rem;
-      margin: 0 auto;
-      display: block;
-      width: 100%;
-      height: auto;
-      max-width: 100%;
+      @include responsive-image();
     }
   }
 
@@ -36,6 +33,42 @@
     h5 {
       font-size: 3rem;
     }
+  }
+
+  .spinner {
+    // The height here is just for demo purposes
+    height: auto;
+    opacity: 1;
+    position: relative;
+    transition: opacity linear 0.1s;
+    transform: translateY(35rem);
+
+    &::before {
+      animation: 2s linear infinite spinner;
+      border: solid 3px #eee;
+      border-bottom-color: #EF6565;
+      border-radius: 50%;
+      content: "";
+      height: 15rem;
+      left: 50%;
+      opacity: inherit;
+      position: absolute;
+      top: 50%;
+      transform: translate3d(-50%, -50%, 0);
+      transform-origin: center;
+      width: 15rem;
+      will-change: transform;
+    }
+  }
+}
+
+
+@keyframes spinner {
+  0% {
+    transform: translate3d(-50%, -50%, 0) rotate(0deg);
+  }
+  100% {
+    transform: translate3d(-50%, -50%, 0) rotate(360deg);
   }
 }
 
