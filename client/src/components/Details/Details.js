@@ -26,6 +26,10 @@ class Details extends Component {
 		this.clickEvents = this.clickEvents.bind(this);
 	}
 
+	/**
+	 * When a component receives new properties update state
+	 * @param props
+	 */
 	componentWillReceiveProps(props) {
 		if (!props.isSet) {
 			// the individual card details
@@ -45,9 +49,11 @@ class Details extends Component {
 		}
 	}
 
+	/**
+	 * Filter card button event
+	 */
 	clickEvents(event) {
 		event.persist();
-
 
 		if (event.target && 'BUTTON' === event.target.tagName) {
 			let filteredCards = this.state.initCards.filter((card) => {
@@ -78,18 +84,20 @@ class Details extends Component {
 	render() {
 		return (
 			<div className="Details">
-				<div className="filter">
-					<ul>
-						<li onClick={(e) => this.clickEvents(e)}><Button variant="secondary">Blue</Button></li>
-						<li onClick={(e) => this.clickEvents(e)}><Button variant="secondary">White</Button></li>
-						<li onClick={(e) => this.clickEvents(e)}><Button variant="secondary">Green</Button></li>
-						<li onClick={(e) => this.clickEvents(e)}><Button variant="secondary">Black</Button></li>
-						<li onClick={(e) => this.clickEvents(e)}><Button variant="secondary">Red</Button></li>
-						<li onClick={(e) => this.clickEvents(e)}><Button variant="secondary">Multicolor</Button></li>
-						<li onClick={(e) => this.clickEvents(e)}><Button variant="secondary">Land</Button></li>
-						<li onClick={(e) => this.clickEvents(e)}><Button variant="secondary">Colorless</Button></li>
-					</ul>
-				</div>
+				<section>
+					<div className="filter" style={{display: this.state.isSet ? 'flex' : 'none'}}>
+						<ul>
+							<li onClick={(e) => this.clickEvents(e)}><Button variant="secondary">Blue</Button></li>
+							<li onClick={(e) => this.clickEvents(e)}><Button variant="secondary">White</Button></li>
+							<li onClick={(e) => this.clickEvents(e)}><Button variant="secondary">Green</Button></li>
+							<li onClick={(e) => this.clickEvents(e)}><Button variant="secondary">Black</Button></li>
+							<li onClick={(e) => this.clickEvents(e)}><Button variant="secondary">Red</Button></li>
+							<li onClick={(e) => this.clickEvents(e)}><Button variant="secondary">Multicolor</Button></li>
+							<li onClick={(e) => this.clickEvents(e)}><Button variant="secondary">Land</Button></li>
+							<li onClick={(e) => this.clickEvents(e)}><Button variant="secondary">Colorless</Button></li>
+						</ul>
+					</div>
+				</section>
 				{/*<div className="spinner"></div>*/}
 				{!this.props.isSet && !_.isEmpty(this.state.cards) ? <SingleCardDetails card={this.state.cards} /> : ''}
 				{this.props.isSet && !_.isEmpty(this.state.cards) ? <MultiCardDetails cards={this.state.cards}/> : ''}

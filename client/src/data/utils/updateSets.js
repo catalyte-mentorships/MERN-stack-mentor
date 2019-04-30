@@ -25,7 +25,6 @@ fs.readFile(`${rawDirectory}/${readFilename}`, (err, data) => {
 			set.set_type.includes('planechase') ||
 			set.set_type.includes('masterpiece') ||
 			set.set_type.includes('box') ||
-			set.set_type.includes('memorabilia') ||
 			set.set_type.includes('starter') ||
 			set.set_type.includes('duel_deck')
 		) {
