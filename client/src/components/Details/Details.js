@@ -15,21 +15,63 @@ import '../../scss/details.scss';
  */
 class Details extends Component {
 	constructor(props) {
-		super();
+		super(props);
 		this.state = {
-			cards: props.card,
-			isSet: props.isSet,
-		}
+			cards: [],
+			isSet: false,
+			isUpdated: false,
+			initCards: [],
+		};
+
+		this.clickEvents = this.clickEvents.bind(this);
 	}
 
 	componentWillReceiveProps(props) {
 		if (!props.isSet) {
 			// the individual card details
 			const { multiverseid, imageUrl, name, setName, artist, type, rarity, legalities, } = props.card;
-			this.card = { multiverseid, imageUrl, name, setName, artist, type, rarity, legalities, };
+			this.setState({
+				cards: { multiverseid, imageUrl, name, setName, artist, type, rarity, legalities, },
+				isSet: false,
+				initCards: { multiverseid, imageUrl, name, setName, artist, type, rarity, legalities, },
+			});
 		} else if (props.isSet) {
 			// a set of cards
-			this.cards = props.card;
+			this.setState({
+				cards: props.card.cards,
+				isSet: true,
+				initCards: props.card.cards,
+			});
+		}
+	}
+
+	clickEvents(event) {
+		event.persist();
+
+
+		if (event.target && 'BUTTON' === event.target.tagName) {
+			let filteredCards = this.state.initCards.filter((card) => {
+				if (!_.isEmpty(card.colors) && card.colors.length === 1) {
+					if (card.colorIdentity.length === 1) {
+						for (let color = 0; color < card.colors.length; color++) {
+							if (card.colors[color] === event.target.innerText) {
+								return card;
+							}
+						}
+					}
+				} else if (!_.isEmpty(card.colors) && card.colors.length > 1 && card.colorIdentity.length > 0 && event.target.innerText === 'Multicolor') {
+					return card;
+				} else if (card.colors.length === 0 && card.types.includes('Land') && event.target.innerText === 'Land') {
+					return card;
+				} else if (card.colors.length === 0 && card.colorIdentity.length === 0 && event.target.innerText === 'Colorless') {
+					return card;
+				}
+			});
+
+			this.setState({
+				cards: filteredCards,
+				isUpdated: true,
+			});
 		}
 	}
 
@@ -38,19 +80,19 @@ class Details extends Component {
 			<div className="Details">
 				<div className="filter">
 					<ul>
-						<li><Button variant="secondary">Blue</Button></li>
-						<li><Button variant="secondary">White</Button></li>
-						<li><Button variant="secondary">Green</Button></li>
-						<li><Button variant="secondary">Black</Button></li>
-						<li><Button variant="secondary">Red</Button></li>
-						<li><Button variant="secondary">Multicolor</Button></li>
-						<li><Button variant="secondary">Land</Button></li>
-						<li><Button variant="secondary">Colorless</Button></li>
+						<li onClick={(e) => this.clickEvents(e)}><Button variant="secondary">Blue</Button></li>
+						<li onClick={(e) => this.clickEvents(e)}><Button variant="secondary">White</Button></li>
+						<li onClick={(e) => this.clickEvents(e)}><Button variant="secondary">Green</Button></li>
+						<li onClick={(e) => this.clickEvents(e)}><Button variant="secondary">Black</Button></li>
+						<li onClick={(e) => this.clickEvents(e)}><Button variant="secondary">Red</Button></li>
+						<li onClick={(e) => this.clickEvents(e)}><Button variant="secondary">Multicolor</Button></li>
+						<li onClick={(e) => this.clickEvents(e)}><Button variant="secondary">Land</Button></li>
+						<li onClick={(e) => this.clickEvents(e)}><Button variant="secondary">Colorless</Button></li>
 					</ul>
 				</div>
 				{/*<div className="spinner"></div>*/}
-				{!this.props.isSet && !_.isEmpty(this.props.card) ? <SingleCardDetails card={this.card} /> : ''}
-				{this.props.isSet && !_.isEmpty(this.props.card) ? <MultiCardDetails cards={this.cards}/> : ''}
+				{!this.props.isSet && !_.isEmpty(this.state.cards) ? <SingleCardDetails card={this.state.cards} /> : ''}
+				{this.props.isSet && !_.isEmpty(this.state.cards) ? <MultiCardDetails cards={this.state.cards}/> : ''}
 			</div>
 		);
 	}

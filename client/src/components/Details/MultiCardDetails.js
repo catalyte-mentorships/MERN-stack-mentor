@@ -6,11 +6,13 @@ import '../../scss/multiCardDetails.scss';
 
 const MultiCardDetails = (cards) => {
 
-	const reformattedCards = cards.cards.cards;
+	console.log(cards);
+
+	const reformattedCards = cards.cards;
+	console.log(reformattedCards);
 	const baseGathererUrl = `https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=`;
 
 	let imageshtml = reformattedCards.map((card, index) => {
-
 		let cardUrl ='';
 		cardUrl += baseGathererUrl;
 		cardUrl += card.multiverseid;
