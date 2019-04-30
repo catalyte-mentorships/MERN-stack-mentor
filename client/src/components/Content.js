@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import Button from 'react-bootstrap/Button';
 
 //import Search from './Search';
 import Details from './Details/Details';
@@ -42,6 +42,7 @@ class Content extends Component {
 	clickEvents(event) {
 		event.persist();
 
+		console.log(event);
 		if (event.target && event.target.id === 'random') {
 			this.getCard(`${window.location.href}api/routes/get-card/random`, false);
 		} else if (event.target && event.target.id === 'sets') {
@@ -51,7 +52,7 @@ class Content extends Component {
 			if (selectedValue !== this.defaultSelectOption) {
 				const set = setsData.filter((set, index) => {
 					if (set.name === selectedValue) {
-						console.log(set);
+//						console.log(set);
 						return set;
 					}
 				});
@@ -85,21 +86,21 @@ class Content extends Component {
 			<div className="app__main-grid">
 				<div className="search">
 					<h2>Search</h2>
-					<div className="search__button" id="random" onClick={(e) => this.clickEvents(e)}>
-						Random Card?
+					<div className="search__button" onClick={(e) => this.clickEvents(e)}>
+						<Button variant="primary" id="random">Random</Button>
 					</div>
 					<div className="search__sets">
 						<div className="select">
-							<label htmlFor="ice-cream-choice">Choose a flavor:</label>
-							<select id="magic-sets" ref="magic-sets">
+							<label htmlFor="ice-cream-choice">Choose a Set:</label>
+							<select id="magic-sets" ref="magic-sets" className="form-control form-control-lg">
 								<option>{this.defaultSelectOption}</option>
 								{ setsData.map((set, index) => {
 									return <option key={index}>{set.name}</option>
 								})}
 							</select>
 						</div>
-						<div className="search__button" id="sets" onClick={(e) => this.clickEvents(e)}>
-							Search
+						<div className="search__button"  onClick={(e) => this.clickEvents(e)}>
+							<Button variant="primary" id="sets" >Search</Button>
 						</div>
 					</div>
 				</div>

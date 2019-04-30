@@ -5,17 +5,21 @@ import React from 'react';
 import '../../scss/multiCardDetails.scss';
 
 const MultiCardDetails = (cards) => {
-	console.log(typeof cards);
-	console.log(cards);
-	console.log(typeof cards.cards.cards);
-	console.log(cards.cards.cards);
 
-	let cardsArray = [];
-	cardsArray.push(cards);
-	console.log(cardsArray[0].cards.cards);
+	const reformattedCards = cards.cards.cards;
+	const baseGathererUrl = `https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=`;
 
-	let imageshtml = cards.cards.cards.map((card, index) => {
-		return <div className='set-image-container' key={index}><img src={card.imageUrl} alt="" /></div>;
+	let imageshtml = reformattedCards.map((card, index) => {
+
+		let cardUrl ='';
+		cardUrl += baseGathererUrl;
+		cardUrl += card.multiverseid;
+
+		return <div className='set-image-container' key={index}>
+			<a href={cardUrl} target="_blank">
+				<img src={card.imageUrl} alt="" />
+			</a>
+		</div>;
 	});
 
 	return (
@@ -25,6 +29,5 @@ const MultiCardDetails = (cards) => {
 		</div>
 	)
 };
-
 
 export default MultiCardDetails;

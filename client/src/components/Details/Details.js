@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import _ from 'lodash'
+import Button from "react-bootstrap/Button";
 
 // my modules
 import SingleCardDetails from './SingleCardDetails';
@@ -15,7 +16,10 @@ import '../../scss/details.scss';
 class Details extends Component {
 	constructor(props) {
 		super();
-		console.log(props);
+		this.state = {
+			cards: props.card,
+			isSet: props.isSet,
+		}
 	}
 
 	componentWillReceiveProps(props) {
@@ -25,15 +29,25 @@ class Details extends Component {
 			this.card = { multiverseid, imageUrl, name, setName, artist, type, rarity, legalities, };
 		} else if (props.isSet) {
 			// a set of cards
-//			console.log(props.card);
 			this.cards = props.card;
-			console.log(typeof props.card);
 		}
 	}
 
 	render() {
 		return (
 			<div className="Details">
+				<div className="filter">
+					<ul>
+						<li><Button variant="secondary">Blue</Button></li>
+						<li><Button variant="secondary">White</Button></li>
+						<li><Button variant="secondary">Green</Button></li>
+						<li><Button variant="secondary">Black</Button></li>
+						<li><Button variant="secondary">Red</Button></li>
+						<li><Button variant="secondary">Multicolor</Button></li>
+						<li><Button variant="secondary">Land</Button></li>
+						<li><Button variant="secondary">Colorless</Button></li>
+					</ul>
+				</div>
 				{/*<div className="spinner"></div>*/}
 				{!this.props.isSet && !_.isEmpty(this.props.card) ? <SingleCardDetails card={this.card} /> : ''}
 				{this.props.isSet && !_.isEmpty(this.props.card) ? <MultiCardDetails cards={this.cards}/> : ''}
