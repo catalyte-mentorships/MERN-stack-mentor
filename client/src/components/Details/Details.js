@@ -67,9 +67,9 @@ class Details extends Component {
 					}
 				} else if (!_.isEmpty(card.colors) && card.colors.length > 1 && card.colorIdentity.length > 0 && event.target.innerText === 'Multicolor') {
 					return card;
-				} else if (card.colors.length === 0 && card.types.includes('Land') && event.target.innerText === 'Land') {
+				} else if (_.isEmpty(card.colors) && card.colors.length === 0 && card.types.includes('Land') && event.target.innerText === 'Land') {
 					return card;
-				} else if (card.colors.length === 0 && card.colorIdentity.length === 0 && event.target.innerText === 'Colorless') {
+				} else if (_.isEmpty(card.colors) && card.colors.length === 0 && card.colorIdentity.length === 0 && event.target.innerText === 'Colorless') {
 					return card;
 				}
 			});
@@ -101,6 +101,8 @@ class Details extends Component {
 				{/*<div className="spinner"></div>*/}
 				{!this.props.isSet && !_.isEmpty(this.state.cards) ? <SingleCardDetails card={this.state.cards} /> : ''}
 				{this.props.isSet && !_.isEmpty(this.state.cards) ? <MultiCardDetails cards={this.state.cards}/> : ''}
+
+        <div className="content__background"></div>
 			</div>
 		);
 	}

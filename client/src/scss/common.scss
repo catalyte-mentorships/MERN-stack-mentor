@@ -2,16 +2,16 @@
   box-sizing: border-box;
 }
 
+// Add Variables
+$common-background: #141722;
+
 html {
-  font-size: 62.5%;
+	font-size: 62.5%;
+	background: $common-background;
+	font-family: 'Open Sans', sans-serif;
 }
 
-
-// Add Variables
-$common-background: #150e1a;
-
 @mixin responsive-image () {
-  border-radius: 1.75rem;
   margin: 0 auto;
   display: block;
   width: 100%;

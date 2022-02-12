@@ -2,16 +2,42 @@
 
 .MultiCardDetails {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: 1fr;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	z-index: 1;
+	overflow: scroll;
+	width: 85%;
+	padding: 5rem 8rem;
 
   .set-image-container {
-    width: 90%;
-    height: auto;
-    margin: 0 auto;
-    padding: 1rem;
+	  height: 165px;
+	  margin: 0 auto;
+	  padding: .5rem;
+	  background: transparent;
+	  border-bottom: 1px solid  #8f8092;
+	  width: 100%;
+	  display: grid;
+	  grid-template-columns: 1fr 1fr 1fr 1fr;
+	  align-items: center;
+
+	  a {
+		  display: block;
+		  width: 100%;
+		  height: 100%;
+	  }
   }
 
+	.card
+	{
+		&__image-container {
+			justify-self: start;
+		}
+	}
   img {
     @include responsive-image();
+	  max-height: 150px;
+	  max-width: 108px;
   }
 }

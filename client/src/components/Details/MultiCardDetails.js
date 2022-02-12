@@ -17,9 +17,16 @@ const MultiCardDetails = (cards) => {
 		cardUrl += card.multiverseid;
 
 		return <div className='set-image-container' key={index}>
-			<a href={cardUrl} target="_blank">
-				<img src={card.imageUrl} alt="" />
-			</a>
+        <div className="card__image-container">
+          <a href={cardUrl} target="_blank">
+            <img src={card.imageUrl} alt="" />
+          </a>
+        </div>
+        <div className="card__details">
+          <div className="card__name">
+            <p>{card.name}</p>
+          </div>
+        </div>
 		</div>;
 	});
 

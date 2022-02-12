@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import Button from 'react-bootstrap/Button';
 
-//import Search from './Search';
 import Details from './Details/Details';
 
 import '../scss/search.scss';
 
-import { getFetch } from "../utils/promises";
+import { getFetch } from '../utils/promises';
 import setsData from '../data/modified/sets.json';
 
 
@@ -29,7 +28,7 @@ class Content extends Component {
 		this.getCard = this.getCard.bind(this);
 
 		// local variables
-		this.defaultSelectOption = 'Select Set';
+		this.defaultSelectOption = 'Select Set...';
 
 		console.log(setsData)
 	}
@@ -44,7 +43,9 @@ class Content extends Component {
 
 		console.log(event);
 		if (event.target && event.target.id === 'random') {
-			this.getCard(`${window.location.href}api/routes/get-card/random`, false);
+
+      this.getCard(`${window.location.href}api/routes/get-card/random`, false);
+
 		} else if (event.target && event.target.id === 'sets') {
 			const magicSetsSelectElement = window.document.getElementById('magic-sets');
 			const selectedValue = magicSetsSelectElement.options[magicSetsSelectElement.selectedIndex].value;
@@ -84,15 +85,15 @@ class Content extends Component {
 	render() {
 		return (
 			<div className="app__main-grid">
-				<div className="search">
+				<div className="search" id="search">
 					<h2>Search</h2>
 					<div className="search__button" onClick={(e) => this.clickEvents(e)}>
 						<Button variant="primary" id="random">Random</Button>
 					</div>
 					<div className="search__sets">
 						<div className="select">
-							<label htmlFor="ice-cream-choice">Choose a Set:</label>
-							<select id="magic-sets" ref="magic-sets" className="form-control form-control-lg">
+							<label htmlFor="magic-sets">Choose a Set:</label>
+							<select id="magic-sets" ref="magic-sets" className="form-control">
 								<option>{this.defaultSelectOption}</option>
 								{ setsData.map((set, index) => {
 									return <option key={index}>{set.name}</option>
@@ -104,7 +105,9 @@ class Content extends Component {
 						</div>
 					</div>
 				</div>
-				<Details card={this.state.card} isSet={this.state.isSet}/>
+
+        <Details card={this.state.card} isSet={this.state.isSet}/>
+
 			</div>
 		)
 	}

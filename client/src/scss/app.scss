@@ -1,3 +1,6 @@
+// Add Variables
+$common-background: #141722;
+
 .app {
   &__main-grid {
     display: grid;
@@ -10,8 +13,8 @@
     color: white;
 
     > div {
-      background: #150e1a;
-      padding: .5rem;
+      //background: $common-background;
+      //padding: .5rem;
     }
   }
 }
