@@ -13,7 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.21.4",
-    "express": "^4.16.4",
+    "express": "^4.18.2",
     "mtgsdk": "^0.4.2"
   },
   "devDependencies": {
